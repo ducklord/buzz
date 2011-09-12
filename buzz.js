@@ -26,6 +26,10 @@
 // THE SOFTWARE.
 // ----------------------------------------------------------------------------
 
+if (goog) {
+    goog.provide('buzz');
+}
+
 var buzz = {
     defaults: {
         autoplay: false,
