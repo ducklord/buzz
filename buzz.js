@@ -50,6 +50,9 @@ var buzz = {
     sounds: [],
     el: document.createElement( 'audio' ),
 
+    /**
+     * @constructor
+     */
     sound: function( src, options ) {
         var options = options || {},
             pid = 0,
@@ -164,7 +167,8 @@ var buzz = {
             this.volume = volume;
             this.sound.volume = volume / 100;
             return this;
-        },
+        }
+
         this.getVolume = function() {
             if ( !supported ) return this;
 
@@ -545,6 +549,9 @@ var buzz = {
         }
     },
 
+    /**
+     * @constructor
+     */
     group: function( sounds ) {
         var sounds = argsToArray( sounds, arguments );
 
