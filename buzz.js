@@ -66,14 +66,14 @@ var buzz = {
 
             this.sound.load();
             return this;
-        }
+        };
 
         this.play = function() {
             if ( !supported ) return this;
 
             this.sound.play();
             return this;
-        }
+        };
 
         this.togglePlay = function() {
             if ( !supported ) return this;
@@ -84,20 +84,20 @@ var buzz = {
                 this.sound.pause();
             }
             return this;
-        }
+        };
 
         this.pause = function() {
             if ( !supported ) return this;
 
             this.sound.pause();
             return this;
-        }
+        };
 
         this.isPaused = function() {
             if ( !supported ) return null;
 
             return this.sound.paused;
-        }
+        };
 
         this.stop = function() {
             if ( !supported  ) return this;
@@ -105,13 +105,13 @@ var buzz = {
             this.setTime( this.getDuration() );
             this.sound.pause();
             return this;
-        }
+        };
 
         this.isEnded = function() {
             if ( !supported ) return null;
 
             return this.sound.ended;
-        }
+        };
 
         this.loop = function() {
             if ( !supported ) return this;
@@ -122,7 +122,7 @@ var buzz = {
                 this.play();
             });
             return this;
-        }
+        };
 
         this.unloop = function() {
             if ( !supported ) return this;
@@ -130,34 +130,34 @@ var buzz = {
             this.sound.removeAttribute( 'loop' );
             this.unbind( 'ended.buzzloop' );
             return this;
-        }
+        };
 
         this.mute = function() {
             if ( !supported ) return this;
 
             this.sound.muted = true;
             return this;
-        }
+        };
 
         this.unmute = function() {
             if ( !supported ) return this;
 
             this.sound.muted = false;
             return this;
-        }
+        };
 
         this.toggleMute = function() {
             if ( !supported ) return this;
 
             this.sound.muted = !this.sound.muted;
             return this;
-        }
+        };
 
         this.isMuted = function() {
             if ( !supported ) return null;
 
             return this.sound.muted;
-        }
+        };
 
         this.setVolume = function( volume ) {
             if ( !supported ) return this;
@@ -167,21 +167,21 @@ var buzz = {
             this.volume = volume;
             this.sound.volume = volume / 100;
             return this;
-        }
+        };
 
         this.getVolume = function() {
             if ( !supported ) return this;
 
             return this.volume;
-        }
+        };
 
         this.increaseVolume = function( value ) {
             return this.setVolume( this.volume + ( value || 1 ) );
-        }
+        };
 
         this.decreaseVolume = function( value ) {
             return this.setVolume( this.volume - ( value || 1 ) );
-        }
+        };
 
         this.setTime = function( time ) {
             if ( !supported ) return this;
@@ -190,71 +190,71 @@ var buzz = {
                 this.sound.currentTime = time;
             });
             return this;
-        }
+        };
 
         this.getTime = function() {
             if ( !supported ) return null;
 
             var time = Math.round( this.sound.currentTime * 100 ) / 100;
             return isNaN( time ) ? buzz.defaults.placeholder : time;
-        }
+        };
 
         this.setPercent = function( percent ) {
             if ( !supported ) return this;
 
             return this.setTime( buzz.fromPercent( percent, this.sound.duration ) );
-        }
+        };
 
         this.getPercent = function() {
             if ( !supported ) return null;
 
 			var percent = Math.round( buzz.toPercent( this.sound.currentTime, this.sound.duration ) );
             return isNaN( percent ) ? buzz.defaults.placeholder : percent;
-        }
+        };
 
         this.setSpeed = function( duration ) {
 			if ( !supported ) return this;
 
             this.sound.playbackRate = duration;
-        }
+        };
 
         this.getSpeed = function() {
 			if ( !supported ) return null;
 
             return this.sound.playbackRate;
-        }
+        };
 
         this.getDuration = function() {
             if ( !supported ) return null;
 
             var duration = Math.round( this.sound.duration * 100 ) / 100;
             return isNaN( duration ) ? buzz.defaults.placeholder : duration;
-        }
+        };
 
         this.getPlayed = function() {
 			if ( !supported ) return null;
 
             return timerangeToArray( this.sound.played );
-        }
+        };
 
         this.getBuffered = function() {
 			if ( !supported ) return null;
 
             return timerangeToArray( this.sound.buffered );
-        }
+        };
 
         this.getSeekable = function() {
 			if ( !supported ) return null;
 
             return timerangeToArray( this.sound.seekable );
-        }
+        };
 
         this.getErrorCode = function() {
             if ( supported && this.sound.error ) {
                 return this.sound.error.code;
             }
             return 0;
-        }
+        };
 
         this.getErrorMessage = function() {
 			if ( !supported ) return null;
@@ -271,13 +271,13 @@ var buzz = {
                 default:
                     return null;
             }
-        }
+        };
 
         this.getStateCode = function() {
 			if ( !supported ) return null;
 
             return this.sound.readyState;
-        }
+        };
 
         this.getStateMessage = function() {
 			if ( !supported ) return null;
@@ -296,13 +296,13 @@ var buzz = {
                 default:
                     return null;
             }
-        }
+        };
 
         this.getNetworkStateCode = function() {
 			if ( !supported ) return null;
 
             return this.sound.networkState;
-        }
+        };
 
         this.getNetworkStateMessage = function() {
 			if ( !supported ) return null;
@@ -319,20 +319,20 @@ var buzz = {
                 default:
                     return null;
             }
-        }
+        };
 
         this.set = function( key, value ) {
             if ( !supported ) return this;
 
             this.sound[ key ] = value;
             return this;
-        }
+        };
 
         this.get = function( key ) {
             if ( !supported ) return null;
 
             return key ? this.sound[ key ] : this.sound;
-        }
+        };
 
         this.bind = function( types, func ) {
             if ( !supported ) return this;
@@ -350,7 +350,7 @@ var buzz = {
                     this.sound.addEventListener( type, efunc, true );
             }
             return this;
-        }
+        };
 
         this.unbind = function( types ) {
             if ( !supported ) return this;
@@ -370,7 +370,7 @@ var buzz = {
                 }
             }
             return this;
-        }
+        };
 
         this.bindOnce = function( type, func ) {
             if ( !supported ) return this;
@@ -385,7 +385,7 @@ var buzz = {
                }
                that.unbind( pid + type );
             });
-        }
+        };
 
         this.trigger = function( types ) {
             if ( !supported ) return this;
@@ -405,7 +405,7 @@ var buzz = {
                 }
             }
             return this;
-        }
+        };
 
         this.fadeTo = function( to, duration, callback ) {
 			if ( !supported ) return this;
@@ -440,19 +440,19 @@ var buzz = {
             });
 
 			return this;
-        }
+        };
 
         this.fadeIn = function( duration, callback ) {
 			if ( !supported ) return this;
 
             return this.setVolume(0).fadeTo( 100, duration, callback );
-        }
+        };
 
         this.fadeOut = function( duration, callback ) {
 			if ( !supported ) return this;
 
             return this.fadeTo( 0, duration, callback );
-        }
+        };
 
         this.fadeWith = function( sound, duration ) {
 			if ( !supported ) return this;
@@ -464,7 +464,7 @@ var buzz = {
             sound.play().fadeIn( duration );
 
 			return this;
-        }
+        };
 
         this.whenReady = function( func ) {
             if ( !supported ) return null;
@@ -477,7 +477,7 @@ var buzz = {
             } else {
                 func.call( that );
             }
-        }
+        };
 
         // privates
         function timerangeToArray( timeRange ) {
@@ -558,7 +558,7 @@ var buzz = {
         // publics
         this.getSounds = function() {
             return sounds;
-        }
+        };
 
         this.add = function( soundArray ) {
             var soundArray = argsToArray( soundArray, arguments );
@@ -567,7 +567,7 @@ var buzz = {
                     sounds.push( soundArray[ a ] );
                 }
             }
-        }
+        };
 
         this.remove = function( soundArray ) {
             var soundArray = argsToArray( soundArray, arguments );
@@ -579,122 +579,122 @@ var buzz = {
                     }
                 }
             }
-        }
+        };
 
         this.load = function() {
             fn( 'load' );
             return this;
-        }
+        };
 
         this.play = function() {
             fn( 'play' );
             return this;
-        }
+        };
 
         this.togglePlay = function( ) {
             fn( 'togglePlay' );
             return this;
-        }
+        };
 
         this.pause = function( time ) {
             fn( 'pause', time );
             return this;
-        }
+        };
 
         this.stop = function() {
             fn( 'stop' );
             return this;
-        }
+        };
 
         this.mute = function() {
             fn( 'mute' );
             return this;
-        }
+        };
 
         this.unmute = function() {
             fn( 'unmute' );
             return this;
-        }
+        };
 
         this.toggleMute = function() {
             fn( 'toggleMute' );
             return this;
-        }
+        };
 
         this.setVolume = function( volume ) {
             fn( 'setVolume', volume );
             return this;
-        }
+        };
 
         this.increaseVolume = function( value ) {
             fn( 'increaseVolume', value );
             return this;
-        }
+        };
 
         this.decreaseVolume = function( value ) {
             fn( 'decreaseVolume', value );
             return this;
-        }
+        };
 
         this.loop = function() {
             fn( 'loop' );
             return this;
-        }
+        };
 
         this.unloop = function() {
             fn( 'unloop' );
             return this;
-        }
+        };
 
         this.setTime = function( time ) {
             fn( 'setTime', time );
             return this;
-        }
+        };
 
         this.setduration = function( duration ) {
             fn( 'setduration', duration );
             return this;
-        }
+        };
 
         this.set = function( key, value ) {
             fn( 'set', key, value );
             return this;
-        }
+        };
 
         this.bind = function( type, func ) {
             fn( 'bind', type, func );
             return this;
-        }
+        };
 
         this.unbind = function( type ) {
             fn( 'unbind', type );
             return this;
-        }
+        };
 
         this.bindOnce = function( type, func ) {
             fn( 'bindOnce', type, func );
             return this;
-        }
+        };
 
         this.trigger = function( type ) {
             fn( 'trigger', type );
             return this;
-        }
+        };
 
         this.fade = function( from, to, duration, callback ) {
             fn( 'fade', from, to, duration, callback );
             return this;
-        }
+        };
 
         this.fadeIn = function( duration, callback ) {
             fn( 'fadeIn', duration, callback );
             return this;
-        }
+        };
 
         this.fadeOut = function( duration, callback ) {
             fn( 'fadeOut', duration, callback );
             return this;
-        }
+        };
 
         // privates
         function fn() {
@@ -768,4 +768,4 @@ var buzz = {
 
         return  Math.round( ( ( total / 100 ) * percent ) * r ) / r;
     }
-}
+};
