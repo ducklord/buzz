@@ -26,6 +26,10 @@
 // THE SOFTWARE.
 // ----------------------------------------------------------------------------
 
+/**
+ * @fileoverview This is a file where all warning checks are disabled.
+ * @suppress {checkTypes||accessControls||checkVars||fileoverviewTags||globalThis||invalidCasts||missingProperties||constantProperty||deprecated||nonStandardJsDocs||strictModuleDepCheck||unknownDefines||uselessCode||visibility}
+ */
 if (goog) {
     goog.provide('buzz');
 }
@@ -52,9 +56,11 @@ var buzz = {
 
     /**
      * @constructor
+     * @param {string} src The url to the sound file.
+     * @param {Object} v_options The options to set on the sound.
      */
-    sound: function( src, options ) {
-        var options = options || {},
+    sound: function( src, v_options ) {
+        var options = v_options || {},
             pid = 0,
             events = [],
             eventsOnce = {},
@@ -334,11 +340,11 @@ var buzz = {
             return key ? this.sound[ key ] : this.sound;
         };
 
-        this.bind = function( types, func ) {
+        this.bind = function( types_arg, func ) {
             if ( !supported ) return this;
 
             var that = this,
-                types = types.split( ' ' ),
+                types = types_arg.split( ' ' ),
 				efunc = function( e ) { func.call( that, e ) };
 
             for( var t = 0; t < types.length; t++ ) {
@@ -352,10 +358,10 @@ var buzz = {
             return this;
         };
 
-        this.unbind = function( types ) {
+        this.unbind = function( types_arg ) {
             if ( !supported ) return this;
 
-            var types = types.split( ' ' );
+            var types = types_arg.split( ' ' );
 
             for( var t = 0; t < types.length; t++ ) {
                 var idx = types[ t ],
@@ -387,10 +393,10 @@ var buzz = {
             });
         };
 
-        this.trigger = function( types ) {
+        this.trigger = function( types_arg ) {
             if ( !supported ) return this;
 
-            var types = types.split( ' ' );
+            var types = types_arg.split( ' ' );
 
             for( var t = 0; t < types.length; t++ ) {
                 var idx = types[ t ];
@@ -509,7 +515,7 @@ var buzz = {
         // init
         if ( supported ) {		
 			
-            for( i in buzz.defaults ) {
+            for( var i in buzz.defaults ) {
                 options[ i ] = options[ i ] || buzz.defaults[ i ];
             }
 
@@ -552,16 +558,16 @@ var buzz = {
     /**
      * @constructor
      */
-    group: function( sounds ) {
-        var sounds = argsToArray( sounds, arguments );
+    group: function( sounds_arg ) {
+        var sounds = argsToArray( sounds_arg, arguments );
 
         // publics
         this.getSounds = function() {
             return sounds;
         };
 
-        this.add = function( soundArray ) {
-            var soundArray = argsToArray( soundArray, arguments );
+        this.add = function( soundArray_arg ) {
+            var soundArray = argsToArray( soundArray_arg, arguments );
             for( var a = 0; a < soundArray.length; a++ ) {
                 for( var i = 0; i < sounds.length; i++ ) {
                     sounds.push( soundArray[ a ] );
