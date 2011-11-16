@@ -426,7 +426,6 @@ var buzz = {
             var from = this.volume,
 				delay = duration / Math.abs( from - to ),
                 that = this;
-            this.play();
 
             function doFade() {
                 setTimeout( function() {
@@ -467,7 +466,7 @@ var buzz = {
                 this.stop();
             });
 
-            sound.play().fadeIn( duration );
+            sound.fadeIn( duration );
 
 			return this;
         };
@@ -483,6 +482,8 @@ var buzz = {
             } else {
                 func.call( that );
             }
+
+            return this;
         };
 
         // privates
