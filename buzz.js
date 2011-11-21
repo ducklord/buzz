@@ -576,8 +576,8 @@ var buzz = {
             }
         };
 
-        this.remove = function( soundArray ) {
-            var soundArray = argsToArray( soundArray, arguments );
+        this.remove = function( soundArray_arg ) {
+            var soundArray = argsToArray( soundArray_arg, arguments );
             for( var a = 0; a < soundArray.length; a++ ) {
                 for( var i = 0; i < sounds.length; i++ ) {
                     if ( sounds[ i ] == soundArray[ a ] ) {
