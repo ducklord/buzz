@@ -26,11 +26,6 @@
 // THE SOFTWARE.
 // ----------------------------------------------------------------------------
 
-/**
- * @fileoverview This is a file where all warning checks are disabled.
- * @suppress {checkTypes||accessControls||checkVars||fileoverviewTags||globalThis||invalidCasts||missingProperties||constantProperty||deprecated||nonStandardJsDocs||strictModuleDepCheck||unknownDefines||uselessCode||visibility}
- */
-
 var buzz = {
     defaults: {
         autoplay: false,
